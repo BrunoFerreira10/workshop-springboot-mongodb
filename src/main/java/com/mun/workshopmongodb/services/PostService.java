@@ -34,4 +34,8 @@ public class PostService {
 		return repository.findAll();
 	}
 	
+	public List<Post> findByTitleContainingIgnoreCase(String text){
+		return repository.findByTitleContainingIgnoreCase(text);
+	}
+	
 }
