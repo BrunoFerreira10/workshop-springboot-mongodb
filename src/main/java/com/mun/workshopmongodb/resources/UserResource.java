@@ -37,6 +37,20 @@ public class UserResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	@RequestMapping(method = RequestMethod.PUT, value = "/{id}")
+	public ResponseEntity<Void> update(@PathVariable String id, @RequestBody UserDTO entityDto){
+		User entity = service.fromDTO(entityDto);
+		entity.setId(id);
+		entity = service.update(entity);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
+	public ResponseEntity<Void> delete(@PathVariable String id){
+		service.delete(id);
+		return ResponseEntity.noContent().build();
+	}
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<UserDTO>> findAll(){
 		

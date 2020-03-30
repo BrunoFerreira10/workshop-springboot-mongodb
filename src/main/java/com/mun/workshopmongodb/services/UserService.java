@@ -26,6 +26,18 @@ public class UserService {
 		return repository.insert(entity);
 	}
 	
+	public User update(User entity) {
+		User newEntity = repository.findById(entity.getId()).get();
+		updateData(newEntity, entity);
+		
+		return repository.save(entity);
+	}
+	
+	public void delete(String id) { 
+		findById(id);
+		repository.deleteById(id);
+	}
+	
 	public List<User> findAll(){
 		return repository.findAll();
 	}
@@ -36,6 +48,11 @@ public class UserService {
 		entity.setName(entityDto.getName());
 		entity.setEmail(entityDto.getEmail());
 		return entity;
+	}
+	
+	private void updateData(User newEntity, User entity) {
+		newEntity.setName(entity.getName());
+		newEntity.setEmail(entity.getEmail());	
 	}
 	
 	
