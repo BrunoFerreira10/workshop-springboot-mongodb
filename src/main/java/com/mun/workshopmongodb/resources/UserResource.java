@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.mun.workshopmongodb.domain.Post;
 import com.mun.workshopmongodb.domain.User;
 import com.mun.workshopmongodb.dto.UserDTO;
 import com.mun.workshopmongodb.services.UserService;
@@ -58,6 +59,12 @@ public class UserResource {
 		List<UserDTO> listDto = list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());		
 		
 		return ResponseEntity.ok().body(listDto);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}/posts")
+	public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+		List<Post> list = service.findById(id).getPosts();
+		return ResponseEntity.ok().body(list);
 	}
 
 }
