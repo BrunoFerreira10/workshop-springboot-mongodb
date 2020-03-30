@@ -32,5 +32,11 @@ public class PostResource {
 		List<Post> list = service.findByTitleContainingIgnoreCase(URL.decodeParam(text));
 		return ResponseEntity.ok().body(list);
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/titlecontaining2")
+	public ResponseEntity<List<Post>> findByTitleContainingIgnoreCase2(@RequestParam(value = "text", defaultValue = "") String text){
+		List<Post> list = service.findByTitleContainingIgnoreCase(URL.decodeParam(text));
+		return ResponseEntity.ok().body(list);
+	}
 
 }
