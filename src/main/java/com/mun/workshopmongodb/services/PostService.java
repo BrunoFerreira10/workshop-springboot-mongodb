@@ -1,5 +1,6 @@
 package com.mun.workshopmongodb.services;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +41,10 @@ public class PostService {
 	
 	public List<Post> findByTitleContainingIgnoreCase2(String text){
 		return repository.findByTitleContainingIgnoreCase2(text);
+	}
+	
+	public List<Post> findByAnyTextByDate(String text, Instant startDate, Instant endDate){
+		return repository.findByAnyTextByDate(text, startDate, endDate);
 	}
 	
 }
